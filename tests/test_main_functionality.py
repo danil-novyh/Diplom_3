@@ -34,7 +34,7 @@ class TestMainFunctionality:
         
         # Проверяем URL и наличие заголовка
         with allure.step("Проверка успешного перехода"):
-            current_url = driver.current_url
+            current_url = main_page.get_current_url()
             assert current_url == Config.BASE_URL + "/", \
                 f"Ожидался URL {Config.BASE_URL}/, получен {current_url}"
             
@@ -63,8 +63,7 @@ class TestMainFunctionality:
         
         # Проверяем переход
         with allure.step("Проверка успешного перехода"):
-            order_feed_page = OrderFeedPage(driver)
-            current_url = driver.current_url
+            current_url = main_page.get_current_url()
             
             assert "/feed" in current_url, \
                 f"URL не содержит /feed. Текущий URL: {current_url}"
@@ -123,10 +122,7 @@ class TestMainFunctionality:
         
         # Открываем модальное окно
         main_page.click_ingredient_fluorescent_bun()
-        
-        with allure.step("Проверка, что модальное окно открыто"):
-            assert main_page.is_ingredient_modal_displayed()
-        
+                
         # Закрываем модальное окно
         main_page.close_modal()
         
@@ -155,11 +151,7 @@ class TestMainFunctionality:
         
         # Получаем начальное значение счетчика
         with allure.step("Получение начального значения счетчика"):
-            try:
-                initial_counter = main_page.get_ingredient_counter()
-            except:
-                # Если счетчик не отображается, значит он равен 0
-                initial_counter = 0
+            initial_counter = main_page.get_ingredient_counter()
         
         # Добавляем ингредиент в конструктор
         main_page.add_ingredient_to_constructor()

@@ -1,6 +1,7 @@
 import allure
 from pages.base_page import BasePage
 from locators.login_page_locators import LoginPageLocators
+from locators.main_page_locators import MainPageLocators
 from config.settings import Config
 
 
@@ -57,6 +58,5 @@ class LoginPage(BasePage):
         self.enter_password(password)
         self.click_login_button()
         # Ожидание перехода на главную страницу
-        from locators.main_page_locators import MainPageLocators
         self.wait_for_visible(MainPageLocators.TITLE_ASSEMBLE_BURGER)
         

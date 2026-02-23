@@ -10,7 +10,7 @@ class OrderFeedPage(BasePage):
     @allure.step("Открыть страницу 'Лента заказов'")
     def open(self):
         """Открытие страницы ленты заказов."""
-        self.driver.get(Config.FEED_URL)
+        self.open_url(Config.FEED_URL)
         self.wait_for_page_load()
     
     @allure.step("Ожидание загрузки страницы ленты заказов")
@@ -22,7 +22,7 @@ class OrderFeedPage(BasePage):
     @allure.step("Обновить страницу и дождаться загрузки")
     def refresh_page(self):
         """Обновление страницы для получения актуальных данных."""
-        self.driver.refresh()
+        self.refresh()
         self.wait_for_page_load()
     
     @allure.step("Получить значение счетчика 'Выполнено за все время'")

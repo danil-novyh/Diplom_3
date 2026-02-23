@@ -3,8 +3,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import (
     StaleElementReferenceException,
-    ElementClickInterceptedException
+    ElementClickInterceptedException,
+    TimeoutException
 )
+from typing import Tuple
 
 
 class BasePage:
@@ -112,7 +114,8 @@ class BasePage:
         element.clear()
         element.send_keys(text)
     
-    def get_current_url(self):
+    @allure.step("Получить текущий URL")
+    def get_current_url(self) -> str:
         """Получить текущий URL."""
         return self.driver.current_url
     
@@ -120,3 +123,22 @@ class BasePage:
     def wait_for_invisibility(self, locator):
         """Ожидание исчезновения элемента."""
         self.wait.until(EC.invisibility_of_element_located(locator))
+
+    @allure.step("Открыть URL: {url}")
+    def open_url(self, url: str):
+        """Открытие страницы по URL."""
+        self.driver.get(url)
+
+    @allure.step("Обновить страницу")
+    def refresh(self):
+        """Обновление текущей страницы."""
+        self.driver.refresh()
+
+    @allure.step("Проверить наличие элемента: {locator}")
+    def is_element_present(self, locator) -> bool:
+        """Проверка наличия элемента на странице."""
+        try:
+            self.wait.until(EC.presence_of_element_located(locator))
+            return True
+        except TimeoutException:
+            return False

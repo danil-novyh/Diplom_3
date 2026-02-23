@@ -91,15 +91,17 @@ class MainPage(BasePage):
         return len(elements) > 0 and elements[0].is_displayed()
     
     @allure.step("Получить значение счетчика ингредиента")
-    def get_ingredient_counter(self):
+    def get_ingredient_counter(self) -> int:
         """
         Получение значения счетчика ингредиента.
         
         Returns:
             int: Значение счетчика
         """
-        counter_text = self.get_text(MainPageLocators.INGREDIENT_COUNTER)
-        return int(counter_text)
+        if self.is_element_present(MainPageLocators.INGREDIENT_COUNTER):
+            counter_text = self.get_text(MainPageLocators.INGREDIENT_COUNTER)
+            return int(counter_text)
+        return 0
     
     @allure.step("Добавить ингредиент в конструктор через Drag and Drop")
     def add_ingredient_to_constructor(self):

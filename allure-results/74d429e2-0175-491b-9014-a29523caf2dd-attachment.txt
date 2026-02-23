@@ -1,4 +1,4 @@
 [32mINFO    [0m WDM:logger.py:11 ====== WebDriver manager ======
 [32mINFO    [0m WDM:logger.py:11 Get LATEST chromedriver version for google-chrome
 [32mINFO    [0m WDM:logger.py:11 Get LATEST chromedriver version for google-chrome
-[32mINFO    [0m WDM:logger.py:11 Driver [C:\Users\Данил\.wdm\drivers\chromedriver\win64\144.0.7559.133\chromedriver-win32/chromedriver.exe] found in cache
+[32mINFO    [0m WDM:logger.py:11 Driver [C:\Users\Данил\.wdm\drivers\chromedriver\win64\145.0.7632.77\chromedriver-win32/chromedriver.exe] found in cache

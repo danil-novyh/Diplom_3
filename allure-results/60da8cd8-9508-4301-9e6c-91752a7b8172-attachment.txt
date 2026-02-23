@@ -1,0 +1,11 @@
+[32mINFO    [0m WDM:logger.py:11 ====== WebDriver manager ======
+[32mINFO    [0m WDM:logger.py:11 Get LATEST chromedriver version for google-chrome
+[32mINFO    [0m WDM:logger.py:11 Get LATEST chromedriver version for google-chrome
+[32mINFO    [0m WDM:logger.py:11 There is no [win64] chromedriver "145.0.7632.77" for browser google-chrome "145.0.7632" in cache
+[32mINFO    [0m WDM:logger.py:11 Get LATEST chromedriver version for google-chrome
+[32mINFO    [0m WDM:logger.py:11 WebDriver version 145.0.7632.77 selected
+[32mINFO    [0m WDM:logger.py:11 Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/145.0.7632.77/win32/chromedriver-win32.zip
+[32mINFO    [0m WDM:logger.py:11 About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/145.0.7632.77/win32/chromedriver-win32.zip
+[32mINFO    [0m WDM:logger.py:11 Driver downloading response is 200
+[32mINFO    [0m WDM:logger.py:11 Get LATEST chromedriver version for google-chrome
+[32mINFO    [0m WDM:logger.py:11 Driver has been saved in cache [C:\Users\Данил\.wdm\drivers\chromedriver\win64\145.0.7632.77]
