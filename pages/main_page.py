@@ -12,7 +12,7 @@ class MainPage(BasePage):
     @allure.step("Открыть главную страницу")
     def open(self):
         """Открытие главной страницы и ожидание загрузки."""
-        self.driver.get(Config.BASE_URL)
+        self.open_url(Config.BASE_URL)
         self.wait_for_page_load()
     
     @allure.step("Ожидание загрузки главной страницы")
