@@ -26,7 +26,7 @@ class OrderFeedPage(BasePage):
         self.wait_for_page_load()
     
     @allure.step("Получить значение счетчика 'Выполнено за все время'")
-    def get_all_time_counter(self):
+    def get_all_time_counter(self) -> int:
         """
         Получение значения счетчика за все время.
         
@@ -39,7 +39,7 @@ class OrderFeedPage(BasePage):
         return int(clean_text)
     
     @allure.step("Получить значение счетчика 'Выполнено за сегодня'")
-    def get_today_counter(self):
+    def get_today_counter(self) -> int:
         """
         Получение значения счетчика за сегодня.
         
@@ -52,7 +52,7 @@ class OrderFeedPage(BasePage):
         return int(clean_text)
     
     @allure.step("Проверить наличие заказа #{order_number} в разделе 'В работе'")
-    def is_order_in_progress(self, order_number):
+    def is_order_in_progress(self, order_number) -> bool:
         """
         Проверка наличия заказа в разделе 'В работе'.
         Сравнивает номера заказов как строки, игнорируя ведущие нули.
@@ -67,7 +67,7 @@ class OrderFeedPage(BasePage):
         target_str = str(order_number).lstrip('0') or '0'
         
         # Получаем все элементы заказов в разделе "В работе"
-        order_elements = self.driver.find_elements(*OrderFeedPageLocators.IN_PROGRESS_ORDERS)
+        order_elements = self.find_elements(OrderFeedPageLocators.IN_PROGRESS_ORDERS)
         
         # Проверяем каждый заказ
         for order_element in order_elements:
@@ -86,13 +86,13 @@ class OrderFeedPage(BasePage):
         return False
     
     @allure.step("Получить список всех заказов 'В работе'")
-    def get_orders_in_progress(self):
+    def get_orders_in_progress(self) -> list:
         """
         Получение списка всех номеров заказов в работе.
         
         Returns:
             list: Список номеров заказов
         """
-        orders = self.driver.find_elements(*OrderFeedPageLocators.IN_PROGRESS_ORDERS)
+        orders = self.find_elements(OrderFeedPageLocators.IN_PROGRESS_ORDERS)
         return [order.text.strip().replace("#", "") for order in orders]
     

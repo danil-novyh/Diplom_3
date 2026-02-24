@@ -54,7 +54,7 @@ class MainPage(BasePage):
         self.wait_for_visible(MainPageLocators.INGREDIENT_DETAILS_TITLE)
     
     @allure.step("Проверка отображения модального окна с деталями ингредиента")
-    def is_ingredient_modal_displayed(self):
+    def is_ingredient_modal_displayed(self) -> bool:
         """
         Проверка видимости модального окна.
         Возвращает:
@@ -64,7 +64,7 @@ class MainPage(BasePage):
         return len(elements) > 0 and elements[0].is_displayed()
     
     @allure.step("Получить название ингредиента из модального окна")
-    def get_ingredient_name_from_modal(self):
+    def get_ingredient_name_from_modal(self) -> str:
         """
         Получение названия ингредиента из модального окна.
         
@@ -81,13 +81,13 @@ class MainPage(BasePage):
         self.wait_for_invisibility(BasePageLocators.MODAL_OVERLAY)
     
     @allure.step("Проверка, что модальное окно закрыто")
-    def is_modal_closed(self):
+    def is_modal_closed(self) -> bool:
         """
         Проверка, что модальное окно закрылось.
         Возвращает:
             bool: True если заголовок 'Соберите бургер' виден
         """
-        elements = self.driver.find_elements(*MainPageLocators.TITLE_ASSEMBLE_BURGER)
+        elements = self.find_elements(MainPageLocators.TITLE_ASSEMBLE_BURGER)
         return len(elements) > 0 and elements[0].is_displayed()
     
     @allure.step("Получить значение счетчика ингредиента")
@@ -114,13 +114,13 @@ class MainPage(BasePage):
         self.wait_for_visible(MainPageLocators.CONSTRUCTOR_BUN_TOP)
     
     @allure.step("Проверка, что ингредиент добавлен в конструктор")
-    def is_ingredient_in_constructor(self):
+    def is_ingredient_in_constructor(self) -> bool:
         """
         Проверка наличия ингредиента в конструкторе.
         Возвращает:
             bool: True если ингредиент добавлен
         """
-        elements = self.driver.find_elements(*MainPageLocators.CONSTRUCTOR_BUN_TOP)
+        elements = self.find_elements(MainPageLocators.CONSTRUCTOR_BUN_TOP)
         return len(elements) > 0 and elements[0].is_displayed()
     
     @allure.step("Клик по кнопке 'Оформить заказ'")
@@ -144,7 +144,7 @@ class MainPage(BasePage):
         )
     
     @allure.step("Получить номер заказа")
-    def get_order_number(self):
+    def get_order_number(self) -> str:
         """
         Получение номера заказа из модального окна.
         

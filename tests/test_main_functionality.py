@@ -90,12 +90,9 @@ class TestMainFunctionality:
         main_page.click_ingredient_fluorescent_bun()
         
         # Проверяем открытие модального окна
-        with allure.step("Проверка отображения модального окна"):
+        with allure.step("Проверка отображения модального окна и названия ингредиента"):
             assert main_page.is_ingredient_modal_displayed(), \
                 "Модальное окно с деталями ингредиента не открылось"
-        
-        # Проверяем название ингредиента
-        with allure.step("Проверка названия ингредиента в модальном окне"):
             ingredient_name = main_page.get_ingredient_name_from_modal()
             expected_name = "Флюоресцентная булка R2-D3"
             

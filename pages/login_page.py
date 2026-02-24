@@ -11,7 +11,7 @@ class LoginPage(BasePage):
     @allure.step("Открыть страницу авторизации")
     def open(self):
         """Открытие страницы логина."""
-        self.driver.get(Config.LOGIN_URL)
+        self.open_url(Config.LOGIN_URL)
         self.wait_for_page_load()
     
     @allure.step("Ожидание загрузки страницы авторизации")

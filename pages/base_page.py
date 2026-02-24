@@ -1,12 +1,13 @@
 import allure
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.remote.webelement import WebElement
 from selenium.common.exceptions import (
     StaleElementReferenceException,
     ElementClickInterceptedException,
     TimeoutException
 )
-from typing import Tuple
+from typing import Tuple, List, Optional
 
 
 class BasePage:
@@ -15,7 +16,7 @@ class BasePage:
         self.wait = WebDriverWait(driver, 15)
     
     @allure.step("Найти элемент: {locator}")
-    def find_element(self, locator):
+    def find_element(self, locator) -> WebElement:
         """Поиск элемента с ожиданием."""
         return self.wait.until(
             EC.presence_of_element_located(locator),
@@ -23,12 +24,12 @@ class BasePage:
         )
     
     @allure.step("Ожидание видимости элемента: {locator}")
-    def wait_for_visible(self, locator):
+    def wait_for_visible(self, locator) -> WebElement:
         """Ожидание видимости элемента."""
         return self.wait.until(EC.visibility_of_element_located(locator))
     
     @allure.step("Ожидание кликабельности элемента: {locator}")
-    def wait_for_clickable(self, locator):
+    def wait_for_clickable(self, locator) -> WebElement:
         """Ожидание возможности клика."""
         return self.wait.until(EC.element_to_be_clickable(locator))
     
@@ -103,7 +104,7 @@ class BasePage:
         self.driver.execute_script(js_code, source, target)
     
     @allure.step("Получить текст элемента: {locator}")
-    def get_text(self, locator):
+    def get_text(self, locator) -> str:
         """Получение текста элемента."""
         return self.find_element(locator).text
     
@@ -142,3 +143,12 @@ class BasePage:
             return True
         except TimeoutException:
             return False
+        
+    @allure.step("Найти элементы: {locator}")
+    def find_elements(self, locator) -> List[WebElement]:
+        """Поиск элементов с ожиданием."""
+        return self.wait.until(
+            EC.presence_of_all_elements_located(locator),
+            message=f"Элементы {locator} не найдены"
+        )
+        
